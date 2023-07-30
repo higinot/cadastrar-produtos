@@ -25,7 +25,7 @@ cd cadastrar-produtos
 3. Construa a imagem do Docker:
 
 ```bash
-docker-compose up -d
+docker-compose --file 'docker-compose.yml' --project-name 'cadastrar-produtos' up --build
 ```
 
 4. Execute o contêiner Docker:
