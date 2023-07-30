@@ -3,14 +3,20 @@ import { Container, Row, Card, Button, Col, Badge } from "react-bootstrap";
 import FormControl from "../components/FormControl";
 import { Link } from "react-router-dom";
 
+type FormValues = {
+  nome: string;
+  descricao: string;
+  preco: string;
+  image: File | null;
+  tags: string;
+};
+
 function Cadastrar() {
-  const imagem = new Image();
-  imagem.src = "/Screenshot_1.png.";
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormValues>({
     nome: "Nome do Produto",
     descricao: "Descrição do produto",
     preco: "0,00",
-    image: imagem,
+    image: null, // Alterar para "File | null" em vez de "Image"
     tags: "Tags do produto",
   });
 
@@ -18,7 +24,7 @@ function Cadastrar() {
     nome: string,
     descricao: string,
     preco: string,
-    image: string,
+    image: File | null,
     tags: string
   ) {
     const newProduct = {
@@ -28,29 +34,29 @@ function Cadastrar() {
       image: image,
       tags: tags,
     };
-
+  
     setForm(newProduct);
   }
+  function previewImagem(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
 
-  function previewImagem(event: any) {
-    const input = event.target;
-    const file = input.files[0];
+    if (file) {
+      setForm((prevData) => ({
+        ...prevData,
+        image: file, // Atualizar com o arquivo selecionado
+      }));
 
-    setForm((prevData) => ({
-      ...prevData,
-      [event.target.name]: input,
-    }));
-
-    console.log(form);
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const imagemPreview = document.getElementById("imagemPreview");
-      imagemPreview.style.width = "398px";
-      imagemPreview.style.height = "405px";
-      imagemPreview.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imagemPreview = document.getElementById("imagemPreview") as HTMLImageElement;
+        if (imagemPreview) {
+          imagemPreview.style.width = "398px";
+          imagemPreview.style.height = "405px";
+          imagemPreview.src = e.target?.result as string;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   return (
@@ -93,7 +99,7 @@ function Cadastrar() {
             <Card style={{ width: "25rem", marginTop: "100px" }}>
               <img
                 id="imagemPreview"
-                src="public\Screenshot_1.png"
+                src={form.image ? URL.createObjectURL(form.image) : "Screenshot_1.png"}
                 alt="Pré-visualização da Imagem"
               />
               <Card.Body>

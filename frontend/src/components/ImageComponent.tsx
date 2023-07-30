@@ -1,5 +1,3 @@
-import { useState, useContext } from "react";
-
 type ImageComponenteProps = {
   infoForm: {
     title: string;

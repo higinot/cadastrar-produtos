@@ -2,7 +2,6 @@ const Notas = [
   {
     juiz: 1,
     surfista: "Vermelho",
-    juiz: "Juiz 1",
     notas: ["1.7", "2.0", "3.8", "3.8", "3.8", "3.8", "3.8"],
   },
   {

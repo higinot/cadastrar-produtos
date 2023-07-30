@@ -1,57 +1,8 @@
-import { useState } from "react";
 import { Container, Row, Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Notas from "../mocks/Surfistas";
 
 function TableReport() {
-  const imagem = new Image();
-  imagem.src = "/Screenshot_1.png.";
-  const [form, setForm] = useState({
-    nome: "Nome do Produto",
-    descricao: "Descrição do produto",
-    preco: "0,00",
-    image: imagem,
-    tags: "Tags do produto",
-  });
-
-  function updateForm(
-    nome: string,
-    descricao: string,
-    preco: string,
-    image: string,
-    tags: string
-  ) {
-    const newProduct = {
-      nome: nome,
-      descricao: descricao,
-      preco: preco,
-      image: image,
-      tags: tags,
-    };
-
-    setForm(newProduct);
-  }
-
-  function previewImagem(event: any) {
-    const input = event.target;
-    const file = input.files[0];
-
-    setForm((prevData) => ({
-      ...prevData,
-      [event.target.name]: input,
-    }));
-
-    console.log(form);
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const imagemPreview = document.getElementById("imagemPreview");
-      imagemPreview.style.width = "398px";
-      imagemPreview.style.height = "405px";
-      imagemPreview.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
 
   const quantidadeMaximaNotas = Notas.reduce(
     (max, { notas }) => Math.max(max, notas.length),
@@ -102,7 +53,7 @@ function TableReport() {
               </tr>
             </thead>
             <tbody>
-              {Notas.map(({ surfista, id, notas }) => (
+              {Notas.map(({ surfista, notas }) => (
                 <tr>
                   <td>{surfista}</td>
                   {notas.map((nota) => (
