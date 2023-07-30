@@ -2,8 +2,7 @@
 
 Este é um projeto de exemplo para um aplicativo web de cadastro de produtos. O projeto foi desenvolvido utilizando [React](https://reactjs.org/) como biblioteca de front-end e [React Bootstrap](https://react-bootstrap.github.io/) para estilização. O aplicativo possui duas páginas: "Cadastrar" e "Produtos". A página "Cadastrar" permite adicionar produtos com informações como nome, descrição, preço, imagem e tags. A página "Produtos" exibe uma lista dos produtos cadastrados com suas informações e uma pré-visualização da imagem.
 
-![image](https://github.com/higinot/cadastrar-produtos/assets/94652743/9c54d039-f3df-4af6-80d3-9114eed48795)
-
+<img src="[caminho-da-imagem.jpg](https://github.com/higinot/cadastrar-produtos/assets/94652743/9c54d039-f3df-4af6-80d3-9114eed48795)" alt="Descrição da imagem" width="300" height="200">
 
 ## Dockerização
 
